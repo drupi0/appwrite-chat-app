@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ isRegister ? 'Register' : 'Login'}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid [formGroup]="loginForm" class="ion-margin">
+    <ion-row class="ion-margin-top">
+      <ion-col class="ion-text-center">
+        <ion-icon name="chatbubbles-outline" class="brand-icon"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item *ngIf="isRegister" fill="outline">
+          <ion-label position="floating">Name</ion-label>
+          <ion-input type="text" name="name" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item fill="outline">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="text" name="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item class="ion-margin-bottom" fill="outline">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" name="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="block" (click)="register()" *ngIf="isRegister">Register</ion-button>
+        <ion-button type="submit" expand="block" (click)="login()" *ngIf="!isRegister">Login</ion-button>
+        <ion-button type="submit" expand="block" (click)="reset()" color="danger">Reset</ion-button>
+        <ion-button fill="clear" expand="block" class="ion-padding"
+          (click)="isRegister ? isRegister = false : isRegister = true">
+          {{ isRegister ? 'Login Now' : 'Register Now'}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

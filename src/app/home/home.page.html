@@ -1,20 +1,52 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-menu contentId="main-content">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>{{ currentSession ? 'Hello ' + currentSession['name'] : '' }}</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <ion-content class="ion-padding">
+    <ion-button color="danger" expand="block" (click)="logout()">Log Out</ion-button>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Chats</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content #content>
+    <ion-card *ngFor="let message of messages">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-badge>{{ message.name }}</ion-badge>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-top">
+          <ion-col>
+            {{ message.message }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="9">
+            <ion-input type="text" [(ngModel)]="message" fill="outline" placeholder="Type your message here"></ion-input>
+          </ion-col>
+          <ion-col size="3" class="ion-text-end">
+            <ion-button color="primary" (click)="sendMessage()">
+              <ion-icon name="send-outline"></ion-icon>
+             </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-footer>
+</div>

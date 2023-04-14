@@ -2,5 +2,9 @@
 	"appId": "io.ionic.starter",
 	"appName": "chat-app-demo",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"plugins": {
+		"LocalNotifications": {
+		}
+	}
 }
